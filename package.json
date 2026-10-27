@@ -1,0 +1,67 @@
+{
+  "name": "drawmapping",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Estúdio local de mapas mentais para aulas e treinamentos",
+  "engines": {
+    "node": ">=24.11.1"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "start": "node scripts/launch.mjs",
+    "serve": "node server/index.mjs",
+    "build": "node scripts/build-model.mjs && tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src shared server scripts tests --ignore-pattern tests/e2e",
+    "test": "node --test tests/*.test.mjs",
+    "test:local": "node scripts/smoke-local.mjs",
+    "prepare:local": "npm run build",
+    "prepare": "npm run build && node scripts/postinstall.mjs --after-build",
+    "postinstall": "node scripts/postinstall.mjs",
+    "pretest": "node scripts/build-model.mjs",
+    "preserve": "node scripts/build-model.mjs",
+    "prestart": "node scripts/build-model.mjs"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.7",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@xyflow/react": "^12.12.0",
+    "fastify": "^5.12.7",
+    "fflate": "^0.8.3",
+    "lucide-react": "^1.61.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5"
+  },
+  "license": "MIT",
+  "bin": {
+    "drawmapping": "scripts/cli.mjs"
+  },
+  "files": [
+    "dist/",
+    "public/drawmapping.ico",
+    "server/",
+    "shared/model.mjs",
+    "scripts/cli.mjs",
+    "scripts/launch.mjs",
+    "scripts/stop.mjs",
+    "scripts/instance.mjs",
+    "scripts/shortcut.mjs",
+    "scripts/postinstall.mjs",
+    "README.md",
+    "LICENSE",
+    "public/third-party-licenses.txt"
+  ]
+}

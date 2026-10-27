@@ -4,7 +4,16 @@ Estúdio de mapas mentais para criar, organizar e apresentar aulas. Executa no n
 
 ## Instalar no Windows
 
-Instale o Node.js **24.11.1 ou superior** (inclui npm) e o Git. Em seguida, execute:
+1. No GitHub, clique em **Code → Download ZIP** e extraia a pasta para um local que você manterá no computador.
+2. Dê dois cliques em **Install.bat** e aguarde. Ele baixa uma cópia local do Node.js, instala as dependências e cria o atalho. É necessário Windows de 64 bits e internet durante a instalação.
+3. Abra o **DrawMapping** pelo atalho na área de trabalho. O servidor inicia minimizado e o navegador abre o aplicativo.
+
+Não é necessário instalar Node.js, npm ou Git separadamente. Mantenha a pasta extraída no mesmo lugar: o atalho usa os arquivos dela. A instalação utiliza o Node.js fornecido pelo projeto oficial e confere o SHA-256 do arquivo baixado.
+
+<details>
+<summary>Instalação pelo terminal</summary>
+
+Instale Node.js **24.11.1 ou superior** e Git, depois execute:
 
 ```powershell
 git clone https://github.com/nvsolucoes/drawmapping.git
@@ -12,9 +21,9 @@ cd drawmapping
 npm install
 ```
 
-O `npm install` prepara o aplicativo e cria o atalho **DrawMapping** na área de trabalho do Windows. Dê dois cliques nele para abrir o servidor local em um terminal minimizado e abrir o navegador. Mantenha o terminal aberto enquanto você usa o aplicativo; ele pode ser restaurado pela barra de tarefas. Mantenha a pasta do projeto no mesmo lugar, pois o atalho aponta para ela. Se o atalho não for criado automaticamente, execute `node scripts/cli.mjs atalho`; você também pode iniciar por `npm start` e parar por `node scripts/cli.mjs parar`.
+O instalador cria um atalho na área de trabalho. Se necessário, execute `node scripts/cli.mjs atalho` para criá-lo novamente. Para não criar o atalho automaticamente, defina `DRAWMAPPING_NO_SHORTCUT=1` antes de instalar. O pacote ainda não está publicado no npm.
 
-Para não criar o atalho automaticamente, defina `DRAWMAPPING_NO_SHORTCUT=1` antes de instalar. A instalação e atualização precisam de internet; o uso diário é local. O pacote ainda não foi publicado no npm. Um pacote `.tgz` preparado com `npm pack` também pode ser instalado globalmente com `npm install -g caminho-do-pacote.tgz`; nesse caso os comandos `drawmapping`, `drawmapping atalho` e `drawmapping parar` ficam disponíveis.
+</details>
 
 ## Abrir a partir da pasta de desenvolvimento
 
@@ -28,21 +37,35 @@ Requisitos: Windows, Chrome ou Edge e Node.js **24.11.1 ou superior**. Em um che
 
 ## Criar e apresentar
 
-1. Na biblioteca, abra o mapa demonstrativo ou crie um mapa em branco, uma aula ou um treinamento.
-   Para organizar por assunto, use **+** em **Suas pastas**. Clique na pasta para ver seus mapas ou criar um novo dentro dela. Para mover um mapa existente, abra suas opções e escolha **Nome e pasta**. Pastas vazias também ficam guardadas e entram no backup.
-   Use os botões ao lado da ordenação para alternar entre blocos e lista; a escolha fica salva no navegador.
-2. Selecione um tópico. Use **Tab** para criar um filho, **Enter** para criar um irmão e **F2** ou duplo clique para editar. Os campos de texto mantêm seu comportamento normal.
-   Para mudar a conexão, arraste um tópico sobre outro: o destino fica destacado e a linha mostra a nova ligação. Solte para confirmar. Os subtópicos acompanham o ramo; soltar em área vazia apenas o reposiciona. Ao clicar em **Organizar mapa**, a ordem vertical atual entre tópicos do mesmo ramo é mantida. Use **Desfazer** para reverter.
-3. Use o painel de propriedades para cores, notas, imagens e organização dos ramos. **Desfazer** e **Refazer** recuperam alterações da sessão.
-   Em **Estilo → Orientação do mapa**, escolha **Automática** para distribuir os ramos nos dois lados ou **À direita** para organizá-los no mesmo lado. Trocar a orientação reorganiza posições manuais; use **Desfazer** para recuperá-las. A opção fica salva por mapa.
-4. Aguarde **Salvo** antes de fechar a aba. O indicador distingue alterações pendentes, gravação em andamento e falhas.
-5. Em **Apresentar**, escolha **Apresentação livre** para abrir ou recolher ramos clicando nos tópicos, na ordem que quiser, sem os controles do editor. Use o mouse para navegar e a roda para aproximar; **Esc** sai. Em **Com roteiro**, percorra as etapas com as setas ou Page Up/Page Down; **Home** retorna à visão geral. As notas não aparecem na audiência.
-   Nas duas apresentações, o espaço é calculado a partir dos tópicos visíveis e se ajusta quando um ramo é revelado. A disposição usada na apresentação não modifica as posições salvas no editor.
-6. Exporte uma cópia editável **`.drawmap`** para transportar o mapa com suas imagens. PNG e SVG servem para materiais visuais; PDF usa o diálogo **Salvar como PDF** do navegador.
+### Organize suas ideias
 
-### Animações com presença
+Crie mapas em branco, aulas ou treinamentos. Organize-os em pastas e alterne entre visualização em blocos e lista; a escolha fica salva no navegador. Use o menu de um mapa para movê-lo para outra pasta.
 
-No editor, use **Animar mapa** para reproduzir a construção dos ramos e tópicos em sequência. Ao abrir ou fechar um ramo, os demais tópicos se reorganizam suavemente com suas conexões. As animações são padrão e a preferência de movimento reduzido do sistema é respeitada. Trocar de tema também tem transições; durante a aula, a câmera acompanha o conteúdo.
+![Biblioteca de mapas do DrawMapping](assets/readme/biblioteca.png)
+
+### Crie conexões
+
+Selecione um tópico e use **Tab** para criar um filho, **Enter** para criar um irmão e **F2** ou duplo clique para editar. Arraste um tópico sobre outro para mudar a conexão; os subtópicos acompanham o ramo. Ao organizar o mapa, a ordem vertical definida entre irmãos é mantida.
+
+Personalize cores, notas e imagens no painel de propriedades. Em **Estilo → Orientação do mapa**, distribua os ramos automaticamente ou coloque todos à direita. A mudança reorganiza posições manuais e pode ser desfeita.
+
+![Editor visual de mapa mental](assets/readme/editor.png)
+
+### Apresente no seu ritmo
+
+Em **Apresentar**, escolha **Apresentação livre** para abrir e fechar ramos na ordem que desejar, ou **Com roteiro** para avançar pelas etapas preparadas. A apresentação calcula o espaço usando os tópicos visíveis, sem alterar as posições salvas no editor. Pressione **Esc** para sair.
+
+![Apresentação livre com ramos recolhidos](assets/readme/apresentacao.png)
+
+### Dê movimento às ideias
+
+Use **Animar mapa** para revelar os ramos em sequência. Os tópicos também se reorganizam suavemente ao abrir ou fechar um ramo. As animações respeitam a preferência de movimento reduzido do sistema.
+
+![Demonstração animada da construção de um mapa](assets/readme/animacao.gif)
+
+### Salve e compartilhe
+
+Aguarde **Salvo** antes de fechar a aba. Exporte uma cópia editável **`.drawmap`** para transportar o mapa com suas imagens. PNG e SVG servem para materiais visuais; PDF usa o diálogo **Salvar como PDF** do navegador.
 
 Após atualizar, confirme que os mapas estão salvos, encerre o servidor com `drawmapping parar` ou `Parar DrawMapping.bat` e abra novamente para carregar também o servidor atualizado. Os mapas permanecem na biblioteca.
 
